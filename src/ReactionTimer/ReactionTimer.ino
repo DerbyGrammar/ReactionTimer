@@ -19,6 +19,7 @@ const int ledG = 8; // Green LED
 const int inputButtonA = 9; // Player A
 const int inputButtonB = 10; // Player B
 long randomTime; // Storage of the randomTime
+int loopVar; // Variable for Loop
 
 /* Buttons Booleans */
 boolean buttonStateA;
@@ -31,12 +32,18 @@ void setup() {
   Serial.begin(9600);
   randomNumber();
   registerPinModes(); // Calls the function to do it, saves space in setup()
+  Start();
 }
 
 void loop() {
   readButtonStates();
-  Serial.println(buttonStateA);
-  Serial.println(buttonStateB);
+}
+
+void Start() {
+  while((buttonStateA == HIGH) && (buttonStateB == HIGH)) {
+     ledS
+     delay(2000);
+  }
 }
 
 void randomNumber() {
@@ -60,3 +67,18 @@ void readButtonStates() {
    buttonStateA = digitalRead(inputButtonA);
    buttonStateB = digitalRead(inputButtonB);
 }
+
+void ledSequence() {
+  digitalWrite(ledB, HIGH);
+  delay(1000);
+  digitalWrite(ledC, HIGH);
+  delay(1000);
+  digitalWrite(ledD, HIGH);
+  delay(1000);
+  digitalWrite(ledE, HIGH);
+  delay(1000);
+  digitalWrite(ledF, HIGH);
+  delay(1000);
+  ledSequence();
+}
+
