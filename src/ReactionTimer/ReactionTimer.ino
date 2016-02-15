@@ -19,8 +19,8 @@ const int ledG = 8; // Green LED
 const int inputButtonA = 9; // Player A
 const int inputButtonB = 10; // Player B
 long randomTime; // Storage of the randomTime
-int loopVar; // Variable for Loop
-
+int randomTimeLow = 5; // Random Time Vars
+int randomTimeHigh = 20;
 /* Buttons Booleans */
 boolean buttonStateA;
 boolean buttonStateB;
@@ -28,11 +28,6 @@ boolean buttonStateB;
 void setup() {
   lcd.begin(16, 2);
   lcd.clear();
-  lcd.print(" Reaction Timer ");
-  Serial.begin(9600);
-  randomNumber();
-  registerPinModes(); // Calls the function to do it, saves space in setup()
-  Start();
 }
 
 void loop() {
@@ -47,7 +42,7 @@ void Start() {
 }
 
 void randomNumber() {
-  randomTime = random(5, 20); //Generates a random number between 5 and 20
+  randomTime = random(randomTimerLow, randomTimerHigh); //Generates a random number between 5 and 20
   randomTime = randomTime*1000; //Converts that number into secounds. Between 5 seconds and 20
 }
 
@@ -62,23 +57,3 @@ void registerPinModes() {
   pinMode(inputButtonA, INPUT);
   pinMode(inputButtonB, INPUT);
 }
-
-void readButtonStates() {
-   buttonStateA = digitalRead(inputButtonA);
-   buttonStateB = digitalRead(inputButtonB);
-}
-
-void ledSequence() {
-  digitalWrite(ledB, HIGH);
-  delay(1000);
-  digitalWrite(ledC, HIGH);
-  delay(1000);
-  digitalWrite(ledD, HIGH);
-  delay(1000);
-  digitalWrite(ledE, HIGH);
-  delay(1000);
-  digitalWrite(ledF, HIGH);
-  delay(1000);
-  ledSequence();
-}
-
