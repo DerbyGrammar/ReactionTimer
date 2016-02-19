@@ -6,7 +6,7 @@
 /* Libraries */
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
-LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 /* Variables */
 const int ledA = 2; // Green LED
@@ -19,31 +19,22 @@ const int ledG = 8; // Green LED
 const int inputButtonA = 9; // Player A
 const int inputButtonB = 10; // Player B
 long randomTime; // Storage of the randomTime
-int randomTimeLow = 5; // Random Time Vars
-int randomTimeHigh = 20;
+int delayTime = 5000;
+int ledDelayTime = 1000;
 /* Buttons Booleans */
 boolean buttonStateA;
 boolean buttonStateB;
 
 void setup() {
-  lcd.begin(16, 2);
+  Serial.begin(9600);
+  lcd.begin();
   lcd.clear();
-}
-
-void loop() {
-  readButtonStates();
-}
-
-void Start() {
-  while((buttonStateA == HIGH) && (buttonStateB == HIGH)) {
-     ledS
-     delay(2000);
-  }
-}
-
-void randomNumber() {
-  randomTime = random(randomTimerLow, randomTimerHigh); //Generates a random number between 5 and 20
-  randomTime = randomTime*1000; //Converts that number into secounds. Between 5 seconds and 20
+  lcd.print(" Reaction Timer ");
+  registerPinModes();
+  randomTimeGeneration();
+  Serial.print(randomTime);
+  Start();
+  delay(delayTime);
 }
 
 void registerPinModes() {
@@ -56,4 +47,50 @@ void registerPinModes() {
   pinMode(ledG, OUTPUT);
   pinMode(inputButtonA, INPUT);
   pinMode(inputButtonB, INPUT);
+}
+
+void randomTimeGeneration() {
+  randomTime = random(3, 8);
+  randomTime = randomTime*1000;
+}
+
+void Start() {
+  lcd.clear();
+  lcd.print("When the lights");
+  lcd.setCursor(0,1);
+  lcd.print("go off.");
+  delay(delayTime);
+  lcd.clear();
+  lcd.print("Press the button");
+  delay(delayTime);
+  lcd.clear();
+  lcd.print("Lets go!");
+  ledSequence();
+  delay(randomTime);
+  ledAllLow();
+}
+
+void ledSequence() {
+  digitalWrite(ledB, HIGH);
+  delay(ledDelayTime);
+  digitalWrite(ledC, HIGH);
+  delay(ledDelayTime);
+  digitalWrite(ledD, HIGH);
+  delay(ledDelayTime);
+  digitalWrite(ledE, HIGH);
+  delay(ledDelayTime);
+  digitalWrite(ledF, HIGH);
+}
+
+void ledAllLow() {
+  digitalWrite(ledB, LOW);
+  digitalWrite(ledC, LOW);
+  digitalWrite(ledD, LOW);
+  digitalWrite(ledE, LOW);
+  digitalWrite(ledF, LOW);
+}
+
+void loop() {
+  buttonStateA = digitalRead(inputButtonA);
+  buttonStateB = digitalRead(inputButtonB);
 }
