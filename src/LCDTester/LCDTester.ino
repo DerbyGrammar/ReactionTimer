@@ -4,7 +4,7 @@
 */
 
 #include <Wire.h>
-#include <LiquidCrystal_I2C> // Uses the library that is in the orgo.
+#include <LiquidCrystal_I2C.h> // Uses the library that is in the orgo.
 
 LiquidCrystal_I2C lcd(0x27, 16, 2); // 16,2 LCD. Use a I2C finder to find the address.
 
