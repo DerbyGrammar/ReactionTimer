@@ -17,4 +17,4 @@ void setup() {
   lcd.print("It Works!");
 }
 
-void loop() {}
+void loop() {} //Not doing anything in the loop.
