@@ -26,7 +26,7 @@ long randomTime;
 long delayTime = 500;
 long ledDelayTime = 1000;
 int randomTimeMin = 3;
-int randomTimeMax = 5 ;
+int randomTimeMax = 5;
 
 long startTime;
 long currentTime;
@@ -68,7 +68,10 @@ void loop() {
     if(isButtonAPressed || isButtonBPressed) {
       currentTime = millis();
       if(isButtonAPressed) {
-        
+        reactionTimeA = currentTime-startTime;
+        lcd.print("Player A Wins!");
+        lcd.setCursor(0,1);
+        lcd.print("Player B
       }
     }
   }
