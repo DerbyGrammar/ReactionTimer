@@ -71,7 +71,8 @@ void loop() {
         reactionTimeA = currentTime-startTime;
         lcd.print("Player A Wins!");
         lcd.setCursor(0,1);
-        lcd.print("Player B
+        lcd.print("Player B Loses.");
+        isRunSequence = false;
       }
     }
   }
