@@ -47,6 +47,8 @@ void setup() {
 
 void loop() {
   isButtonResetPressed = digitalRead(inputButtonReset);
+  isButtonAPressed = digitalRead(inputButtonA);
+  isButtonBPressed = digitalRead(inputButtonB);
 
   if(isButtonResetPressed == HIGH) {
     lcd.clear();
@@ -71,9 +73,6 @@ void loop() {
     delay(randomTime);
     startTime = millis();
     allLedsLow();
-
-    isButtonAPressed = digitalRead(inputButtonA);
-    isButtonBPressed = digitalRead(inputButtonB);
 
     if(isButtonAPressed == HIGH || isButtonBPressed == HIGH) {
       Serial.println("Button Pressed");
