@@ -4,8 +4,8 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 int switchPin = 2;
 int ledPin = 12;
-int randomTimeMin = 3;
-int randomTimeMax = 5;
+int randomTimeMin = 5;
+int randomTimeMax = 20;
 boolean lastButton = LOW;
 boolean currentButton = LOW;
 boolean Started = false;
