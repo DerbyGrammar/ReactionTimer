@@ -149,7 +149,7 @@ void Stop() {
     lcd.print("Too Slow!");
   }
   else {
-    lcd.print("Loser!");
+    lcd.print("Try Again!!");
   }
   
   allLedsLow();   
