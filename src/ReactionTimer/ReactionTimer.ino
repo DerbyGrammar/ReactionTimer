@@ -2,8 +2,8 @@
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-int switchPin = 2;
-int ledPin = 12;
+const int switchPin = 2;
+const int ledPin = 12;
 int randomTimeMin = 5;
 int randomTimeMax = 20;
 boolean lastButton = LOW;
@@ -15,8 +15,7 @@ long endTime;
 long randomTime;
 float elapsedTime;
 
-void setup()
-{
+void setup() {
   pinMode(switchPin, INPUT);
   pinMode(ledPin, OUTPUT);
   Serial.begin(9600);
@@ -26,8 +25,8 @@ void setup()
   lcd.print(" Reaction Timer ");
   digitalWrite(switchPin, HIGH);
 }
-boolean debounce(boolean last)
-{
+
+boolean debounce(boolean last) {
   boolean current = digitalRead(switchPin);
   if(last != current)
   {
@@ -38,29 +37,26 @@ boolean debounce(boolean last)
 }
 
 
-void loop()
-{
+void loop() {
   currentButton = debounce(lastButton);
-  if(lastButton == HIGH && currentButton == LOW)
-  {
+  if(lastButton == HIGH && currentButton == LOW) {
     Started = !Started;
     lastButton = LOW;
   }
+  
   lastButton = currentButton;
-  if(Started == true && timer == false)
-  {
+  
+  if(Started == true && timer == false) {
     Random();
     timer = true;
   }
-  if(Started == false && timer == true)
-  {
+  if(Started == false && timer == true) {
     Stop();
     timer = false;
   }
  
 }
-void Random()
-{
+void Random() {
   randomTime = random(randomTimeMin,randomTimeMax);
   randomTime = randomTime*1000;
 
@@ -79,12 +75,12 @@ void Random()
 }
 
 
-void Start(){
+void Start() {
   startTime = millis();
   digitalWrite(ledPin, HIGH);
 }
 
-void Stop(){
+void Stop() {
   endTime = millis();
   elapsedTime = (endTime - startTime)+5;
   elapsedTime = elapsedTime/1000;
