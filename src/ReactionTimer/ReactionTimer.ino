@@ -1,131 +1,112 @@
-/* 
-  Chris Nethercott
-  Reaction Timer
-  v2.0
-*/
-
-/* Libraries */
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-/* Variables for Pin Numbers */
-const int ledA = 2; // Green LED
-const int ledB = 3; // Red LED
-const int ledC = 4; // Red LED
-const int ledD = 5; // Red LED
-const int ledE = 6; // Red LED
-const int ledF = 7; // Red LED
-const int ledG = 8; // Green LED
-const int inputButtonA = 9; // Player A
-const int inputButtonB = 10; // Player B
-const int inputButtonReset = 11; // Reset Button
-
-/* Time Variables */
-long randomTime;
-long delayTime = 500;
-long ledDelayTime = 1000;
+int switchPin = 2;
+int ledPin = 12;
 int randomTimeMin = 3;
 int randomTimeMax = 5;
-
+boolean lastButton = LOW;
+boolean currentButton = LOW;
+boolean Started = false;
+boolean timer = false;
 long startTime;
-long currentTime;
-long reactionTimeA;
-long reactionTimeB;
+long endTime;
+long randomTime;
+float elapsedTime;
 
-/* Booleans */
-boolean isRunSequence;
-boolean isButtonAPressed;
-boolean isButtonBPressed;
-boolean isButtonResetPressed;
-
-void setup() {
-  lcdBegin();
+void setup()
+{
+  pinMode(switchPin, INPUT);
+  pinMode(ledPin, OUTPUT);
   Serial.begin(9600);
-  lcd.print(" Reaction Timer ");
-}
-
-void loop() {
-  isButtonResetPressed = digitalRead(inputButtonReset);
-
-  if(isButtonResetPressed == HIGH) {
-    lcd.clear();
-    lcd.print("Starting...");
-    isRunSequence = true;
-    isButtonAPressed == LOW;
-    isButtonBPressed == LOW;
-  }
-
-  if(isRunSequence == true) {
-    randomGenerator();
-    Serial.println(randomTime);
-    Serial.println("random generated");
-    lcd.clear();
-    lcd.print("Get Ready!");
-    delay(1000);
-    lcd.clear();
-    lcd.print("Watch the LEDS!");
-    delay(1000);
-    lcd.clear();
-    ledSequence();
-    delay(randomTime);
-    startTime = millis();
-    allLedsLow();
-
-    isButtonAPressed = digitalRead(inputButtonA);
-    isButtonBPressed = digitalRead(inputButtonB);
-
-    if(isButtonAPressed == HIGH || isButtonBPressed == HIGH) {
-      Serial.println("Button Pressed");
-      currentTime = millis();
-      if(isButtonAPressed == HIGH) {
-        Serial.println("APRESSED");
-        reactionTimeA = currentTime-startTime;
-        lcd.print("Player A Wins!");
-        lcd.setCursor(0,1);
-        lcd.print(reactionTimeA);
-        isRunSequence = false;
-      }
-      if(isButtonBPressed == HIGH) {
-        Serial.println("BPRESSED");
-        reactionTimeB = currentTime-startTime;
-        lcd.print("Player B Wins!");
-        lcd.setCursor(0,1);
-        lcd.print(reactionTimeB);
-        isRunSequence = false;
-      } 
-    }
-  isRunSequence = false; 
-  }
-}
-
-void lcdBegin() {
-  lcd.begin();
-  lcd.clear();
-}
-
-void randomGenerator() {
   randomSeed(analogRead(-1));
-  randomTime = (random(randomTimeMin,randomTimeMax))*1000;
+  lcd.begin();
+  lcd.backlight();
+  lcd.print(" Reaction Timer ");
+  digitalWrite(switchPin, HIGH);
+}
+boolean debounce(boolean last)
+{
+  boolean current = digitalRead(switchPin);
+  if(last != current)
+  {
+    delay(5);
+    current = digitalRead(switchPin);
+  }
+  return current;
 }
 
-void ledSequence() {
-  digitalWrite(ledB, HIGH);
-  delay(ledDelayTime);
-  digitalWrite(ledC, HIGH);
-  delay(ledDelayTime);
-  digitalWrite(ledD, HIGH);
-  delay(ledDelayTime);
-  digitalWrite(ledE, HIGH);
-  delay(ledDelayTime);
-  digitalWrite(ledF, HIGH);
+
+void loop()
+{
+  currentButton = debounce(lastButton);
+  if(lastButton == HIGH && currentButton == LOW)
+  {
+    Started = !Started;
+    lastButton = LOW;
+  }
+  lastButton = currentButton;
+  if(Started == true && timer == false)
+  {
+    Random();
+    timer = true;
+  }
+  if(Started == false && timer == true)
+  {
+    Stop();
+    timer = false;
+  }
+ 
+}
+void Random()
+{
+  randomTime = random(randomTimeMin,randomTimeMax);
+  randomTime = randomTime*1000;
+
+  lcd.clear();
+  lcd.print(" Reaction Timer");
+  digitalWrite(ledPin, HIGH);
+  delay(100);
+  digitalWrite(ledPin, LOW);
+  delay(1000);
+  lcd.setCursor(0,1);
+  lcd.print("Get Ready!");
+  Serial.print("Random Time: ");
+  Serial.println(randomTime);
+  delay(randomTime);
+  Start();
 }
 
-void allLedsLow() {
-  digitalWrite(ledB, LOW);
-  digitalWrite(ledC, LOW);
-  digitalWrite(ledD, LOW);
-  digitalWrite(ledE, LOW);
-  digitalWrite(ledF, LOW);
+
+void Start(){
+  startTime = millis();
+  digitalWrite(ledPin, HIGH);
 }
 
+void Stop(){
+  endTime = millis();
+  elapsedTime = (endTime - startTime)+5;
+  elapsedTime = elapsedTime/1000;
+  Serial.print("Reaction Timer: ");
+  Serial.println(elapsedTime);
+  lcd.clear();
+  lcd.print("Time: ");
+  lcd.print(elapsedTime);
+  lcd.print("ms");
+  lcd.setCursor(0,1);
+  if(elapsedTime < 0.5) {
+    lcd.print("You are fast!");
+  }
+  else if(elapsedTime < 2.0) {
+    lcd.print("Awesome!");
+  }
+  else if(elapsedTime < 10.0) {
+    lcd.print("Too Slow!");
+  }
+  else {
+    lcd.print("Loser!");
+  }
+  digitalWrite(ledPin, LOW);
+   
+}
