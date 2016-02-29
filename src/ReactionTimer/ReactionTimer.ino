@@ -26,20 +26,6 @@ void setup()
   lcd.print(" Reaction Timer ");
   digitalWrite(switchPin, HIGH);
 }
-<<<<<<< HEAD
-
-void loop() {
-  isButtonResetPressed = digitalRead(inputButtonReset);
-  isButtonAPressed = digitalRead(inputButtonA);
-  isButtonBPressed = digitalRead(inputButtonB);
-
-  if(isButtonResetPressed == HIGH) {
-    lcd.clear();
-    lcd.print("Starting...");
-    isRunSequence = true;
-    isButtonAPressed == LOW;
-    isButtonBPressed == LOW;
-=======
 boolean debounce(boolean last)
 {
   boolean current = digitalRead(switchPin);
@@ -47,50 +33,10 @@ boolean debounce(boolean last)
   {
     delay(5);
     current = digitalRead(switchPin);
->>>>>>> origin/master
   }
   return current;
 }
 
-<<<<<<< HEAD
-  if(isRunSequence == true) {
-    randomGenerator();
-    Serial.println(randomTime);
-    Serial.println("random generated");
-    lcd.clear();
-    lcd.print("Get Ready!");
-    delay(1000);
-    lcd.clear();
-    lcd.print("Watch the LEDS!");
-    delay(1000);
-    lcd.clear();
-    ledSequence();
-    delay(randomTime);
-    startTime = millis();
-    allLedsLow();
-
-    if(isButtonAPressed == HIGH || isButtonBPressed == HIGH) {
-      Serial.println("Button Pressed");
-      currentTime = millis();
-      if(isButtonAPressed == HIGH) {
-        Serial.println("APRESSED");
-        reactionTimeA = currentTime-startTime;
-        lcd.print("Player A Wins!");
-        lcd.setCursor(0,1);
-        lcd.print(reactionTimeA);
-        isRunSequence = false;
-      }
-      if(isButtonBPressed == HIGH) {
-        Serial.println("BPRESSED");
-        reactionTimeB = currentTime-startTime;
-        lcd.print("Player B Wins!");
-        lcd.setCursor(0,1);
-        lcd.print(reactionTimeB);
-        isRunSequence = false;
-      } 
-    }
-  isRunSequence = false; 
-=======
 
 void loop()
 {
@@ -99,7 +45,6 @@ void loop()
   {
     Started = !Started;
     lastButton = LOW;
->>>>>>> origin/master
   }
   lastButton = currentButton;
   if(Started == true && timer == false)
