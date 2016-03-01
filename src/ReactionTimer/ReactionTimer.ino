@@ -17,7 +17,7 @@ const int ledPinF = 8; // Green
 
 int randomTimeMin = 5;
 int randomTimeMax = 20;
-int ledDelayTime = 1500;
+int ledDelayTime = 1000;
 
 boolean lastButton = LOW;
 boolean currentButton = LOW;
@@ -88,9 +88,9 @@ void Random() {
 
   lcd.clear();
   lcd.print("Reaction Timer");
-  digitalWrite(ledPinG, HIGH);
+  digitalWrite(ledPinF, HIGH);
   delay(100);
-  digitalWrite(ledPinG, LOW);
+  digitalWrite(ledPinF, LOW);
   delay(1000);
   lcd.setCursor(0,1);
   lcd.print("Get Ready!");
@@ -136,7 +136,7 @@ void Stop() {
   lcd.clear();
   lcd.print("Time: ");
   lcd.print(elapsedTime);
-  lcd.print("ms");
+  lcd.print("s");
   
   lcd.setCursor(0,1);
   if(elapsedTime < 0.5) {
