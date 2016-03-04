@@ -15,8 +15,8 @@ const int ledPinD = 6; // Red
 const int ledPinE = 7; // Red
 const int ledPinF = 8; // Green
 
-int randomTimeMin = 5;
-int randomTimeMax = 20;
+int randomTimeMin = 3;
+int randomTimeMax = 8;
 int ledDelayTime = 1000;
 
 boolean lastButton = LOW;
