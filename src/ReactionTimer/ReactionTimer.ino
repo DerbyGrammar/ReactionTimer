@@ -7,13 +7,13 @@
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-const int switchPin = 2;
-const int ledPinA = 3; // Red
-const int ledPinB = 4; // Red
-const int ledPinC = 5; // Red
-const int ledPinD = 6; // Red
-const int ledPinE = 7; // Red
-const int ledPinF = 8; // Green
+const int ledPinA = 2; // Red
+const int ledPinB = 3; // Red
+const int ledPinC = 4; // Red
+const int ledPinD = 5; // Red
+const int ledPinE = 6; // Red
+const int ledPinF = 7; // Green
+const int switchPin = 8; // Switch
 
 int randomTimeMin = 3;
 int randomTimeMax = 8;
@@ -63,7 +63,7 @@ boolean debounce(boolean last) {
 }
 
 
-void loop() {
+void loop() { 
   currentButton = debounce(lastButton);
   if(lastButton == HIGH && currentButton == LOW) {
     Started = !Started;
