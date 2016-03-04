@@ -139,13 +139,13 @@ void Stop() {
   lcd.print("s");
   
   lcd.setCursor(0,1);
-  if(elapsedTime < 0.5) {
+  if(elapsedTime < 0.2) {
     lcd.print("You are fast!");
   }
-  else if(elapsedTime < 2.0) {
+  else if(elapsedTime < 0.5) {
     lcd.print("Awesome!");
   }
-  else if(elapsedTime < 10.0) {
+  else if(elapsedTime < 1) {
     lcd.print("Too Slow!");
   }
   else {
