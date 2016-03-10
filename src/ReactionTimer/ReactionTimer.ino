@@ -59,7 +59,7 @@ boolean debounce(boolean last) { // To see if the button has been pressed
     delay(5); // Use for stability
     current = digitalRead(switchPin); // Reads the state again, see if it has changed
   }
-  return current; // Returns the state
+  return current; // Returns the state of the button
 }
 
 
