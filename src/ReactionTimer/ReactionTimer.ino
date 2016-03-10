@@ -31,15 +31,15 @@ float elapsedTime; // startTime - endTime
 void setup() {
   pinModes(); // Uses a subroutine to set all of the inputs/outputs
   
-  Serial.begin(9600); // Begins 
+  Serial.begin(9600); // Begins the Serial port for printing with the operatio
   
-  randomSeed(analogRead(-1));
+  randomSeed(analogRead(-1)); // You will need this to generate proper 'random' numbers
   
-  lcd.begin();
-  lcd.backlight();
-  lcd.print(" Reaction Timer ");
-  
-  digitalWrite(switchPin, HIGH);
+  lcd.begin(); // Begins the LCD
+  lcd.backlight(); // Turns on the backlight
+  lcd.print(" Reaction Timer "); // Prints Reaction Timer, useful in a hard restart
+   
+  digitalWrite(switchPin, HIGH); // Writes the switch HIGH, because we use a two prong switch, instead of a push button
 }
 
 void pinModes() {
