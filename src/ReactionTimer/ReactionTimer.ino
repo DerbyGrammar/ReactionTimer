@@ -3,21 +3,21 @@
   Reaction Timer
 */
 
-#include <Wire.h> // Wire library for communicating with the I2C devices.
-#include <LiquidCrystal_I2C.h>  // LCD library for outputing text to the I2C LCD
-LiquidCrystal_I2C lcd(0x27, 16, 2); // Sets the address for the LCD I2C
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-const int ledPinA = 2; // Red LED - Red LEDs are used for the sequence
-const int ledPinB = 3; // Red LED
-const int ledPinC = 4; // Red LED
-const int ledPinD = 5; // Red LED
-const int ledPinE = 6; // Red LED
-const int ledPinF = 7; // Green - For troubleshooting/activating the sequence
+const int ledPinA = 2; // Red
+const int ledPinB = 3; // Red
+const int ledPinC = 4; // Red
+const int ledPinD = 5; // Red
+const int ledPinE = 6; // Red
+const int ledPinF = 7; // Green
 const int switchPin = 8; // Switch
 
-int randomTimeMin = 3; // Mininium Time (s)
-int randomTimeMax = 8; // Maximium Time (s)
-int ledDelayTime = 1000; // Amount of time between the leds coming on
+int randomTimeMin = 3;
+int randomTimeMax = 8;
+int ledDelayTime = 1000;
 
 boolean lastButton = LOW;
 boolean currentButton = LOW;
