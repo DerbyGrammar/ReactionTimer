@@ -43,8 +43,8 @@ void setup() {
 }
 
 void pinModes() {
-  pinMode(switchPin, INPUT);
-  pinMode(ledPinA, OUTPUT);
+  pinMode(switchPin, INPUT); // Sets switch as an input
+  pinMode(ledPinA, OUTPUT); // Sets the LEDs as an output
   pinMode(ledPinB, OUTPUT);
   pinMode(ledPinC, OUTPUT);
   pinMode(ledPinD, OUTPUT);
@@ -52,14 +52,14 @@ void pinModes() {
   pinMode(ledPinF, OUTPUT);
 }
 
-boolean debounce(boolean last) {
-  boolean current = digitalRead(switchPin);
-  if(last != current)
+boolean debounce(boolean last) { // To see if the button has been pressed
+  boolean current = digitalRead(switchPin); // Sets the boolean to the current state of the button
+  if(last != current) // If the last state does NOT equal current
   {
-    delay(5);
-    current = digitalRead(switchPin);
+    delay(5); // Use for stability
+    current = digitalRead(switchPin); // Reads the state again, see if it has changed
   }
-  return current;
+  return current; // Returns the state
 }
 
 
