@@ -63,18 +63,18 @@ boolean debounce(boolean last) { // To see if the button has been pressed
 }
 
 
-void loop() { 
+void loop() { // Loop runs every milisecond
   currentButton = debounce(lastButton);
-  if(lastButton == HIGH && currentButton == LOW) {
-    Started = !Started;
-    lastButton = LOW;
+  if(lastButton == HIGH && currentButton == LOW) { // When the button was high, but now is low
+    Started = !Started; // Toggles the started state
+    lastButton = LOW; // Sets the lastButton to low
   }
   
-  lastButton = currentButton;
+  lastButton = currentButton; // Sets the lastButton state to currentButton
   
-  if(Started == true && timer == false) {
-    Random();
-    timer = true;
+  if(Started == true && timer == false) { // When started is true and timer isn't running
+    Random(); // Starts the Reaction Timer
+    timer = true; // 
   }
   if(Started == false && timer == true) {
     Stop();
