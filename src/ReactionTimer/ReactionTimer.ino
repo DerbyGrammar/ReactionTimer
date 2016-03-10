@@ -29,9 +29,9 @@ long randomTime; // randomTime delay from all LEDs on to them all off
 float elapsedTime; // startTime - endTime
 
 void setup() {
-  pinModes(); // Uses a subroutine to set all of the inputs/outputs
+  pinModes(); // Uses a subroutine
   
-  Serial.begin(9600); // Begins 
+  Serial.begin(9600);
   
   randomSeed(analogRead(-1));
   
