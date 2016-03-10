@@ -3,35 +3,35 @@
   Reaction Timer
 */
 
-#include <Wire.h> // Wire library for communicating with the I2C devices.
-#include <LiquidCrystal_I2C.h>  // LCD library for outputing text to the I2C LCD
-LiquidCrystal_I2C lcd(0x27, 16, 2); // Sets the address for the LCD I2C
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-const int ledPinA = 2; // Red LED - Red LEDs are used for the sequence
-const int ledPinB = 3; // Red LED
-const int ledPinC = 4; // Red LED
-const int ledPinD = 5; // Red LED
-const int ledPinE = 6; // Red LED
-const int ledPinF = 7; // Green - For troubleshooting/activating the sequence
+const int ledPinA = 2; // Red
+const int ledPinB = 3; // Red
+const int ledPinC = 4; // Red
+const int ledPinD = 5; // Red
+const int ledPinE = 6; // Red
+const int ledPinF = 7; // Green
 const int switchPin = 8; // Switch
 
-int randomTimeMin = 3; // Mininium Time (s)
-int randomTimeMax = 8; // Maximium Time (s)
-int ledDelayTime = 1000; // Amount of time between the leds coming on
+int randomTimeMin = 3;
+int randomTimeMax = 8;
+int ledDelayTime = 1000;
 
-boolean lastButton = LOW; // If the state of the button has changed
-boolean currentButton = LOW; // If the state of the button has changed
-boolean Started = false; // If the reaction timer has started
-boolean timer = false; // If the timer has started
-long startTime; // startTime for measuring the reaction time
-long endTime; // endTime for measuring the reaction time
-long randomTime; // randomTime delay from all LEDs on to them all off
-float elapsedTime; // startTime - endTime
+boolean lastButton = LOW;
+boolean currentButton = LOW;
+boolean Started = false;
+boolean timer = false;
+long startTime;
+long endTime;
+long randomTime;
+float elapsedTime;
 
 void setup() {
-  pinModes(); // Uses a subroutine to set all of the inputs/outputs
+  pinModes();
   
-  Serial.begin(9600); // Begins 
+  Serial.begin(9600);
   
   randomSeed(analogRead(-1));
   
