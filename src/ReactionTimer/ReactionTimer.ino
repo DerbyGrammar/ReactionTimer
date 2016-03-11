@@ -98,7 +98,7 @@ void Random() {
   Serial.println(randomTime);
   ledSequence(); // Starts the super cool f1 lighting sequence
   delay(randomTime); // Delays the randomTime which was generated earlier
-  Start();
+  Start(); // Calls the Start() subroutine
 }
 
 void ledSequence() { // LED Sequence 
@@ -131,16 +131,17 @@ void Stop() {
   endTime = millis(); // Sets the end time
   elapsedTime = (endTime - startTime)+5; // Sets the elasped time to start-end
   elapsedTime = elapsedTime/1000; // Changed it from ms to s
-  Serial.print("Reaction Timer: "); 
+  Serial.print("Reaction Timer: "); // Prints to the operator the reaction time
   Serial.println(elapsedTime);
-  lcd.clear();
+  lcd.clear(); // Clears the LCD
   
-  lcd.print("Time: ");
+  lcd.print("Time: "); // Tells the user their reaction time
   lcd.print(elapsedTime);
   lcd.print("s");
   
-  lcd.setCursor(0,1);
-  if(elapsedTime < 0.2) {
+  lcd.setCursor(0,1); // Moves the LCD cursor to the second line
+  
+  if(elapsedTime < 0.2) { // Custom Messages depending on the time
     lcd.print("You are fast!");
   }
   else if(elapsedTime < 0.5) {
@@ -153,5 +154,5 @@ void Stop() {
     lcd.print("Try Again!");
   }
   
-  allLedsLow();   
+  allLedsLow(); // Turns all LEDs off
 }
