@@ -74,34 +74,34 @@ void loop() { // Loop runs every milisecond
   
   if(Started == true && timer == false) { // When started is true and timer isn't running
     Random(); // Starts the Reaction Timer
-    timer = true; // 
+    timer = true; // Starts the timer
   }
-  if(Started == false && timer == true) {
-    Stop();
-    timer = false;
+  if(Started == false && timer == true) { // When started is false and the timer is running
+    Stop(); // Stops the Reaction Timer
+    timer = false; // Turns off the timer
   } 
 }
 
 void Random() {
-  randomTime = random(randomTimeMin,randomTimeMax);
-  randomTime = randomTime*1000;
+  randomTime = random(randomTimeMin,randomTimeMax); // Generates the random number
+  randomTime = randomTime*1000; // Converts the number from ms to s
 
-  lcd.clear();
+  lcd.clear(); // Clears all data off the led!
   lcd.print("Reaction Timer");
-  digitalWrite(ledPinF, HIGH);
-  delay(100);
-  digitalWrite(ledPinF, LOW);
-  delay(1000);
-  lcd.setCursor(0,1);
+  digitalWrite(ledPinF, HIGH); // Tells the user that it is ready
+  delay(100); // With a small LED blink
+  digitalWrite(ledPinF, LOW); // That Turns off
+  delay(1000); // Waits a second
+  lcd.setCursor(0,1); // Sets the LCD cursor to bottom left
   lcd.print("Get Ready!");
-  Serial.print("Random Time: ");
+  Serial.print("Random Time: "); // Prints to the operator the randomTime
   Serial.println(randomTime);
-  ledSequence();
-  delay(randomTime);
+  ledSequence(); // Starts the super cool f1 lighting sequence
+  delay(randomTime); // Delays the randomTime which was generated earlier
   Start();
 }
 
-void ledSequence() {
+void ledSequence() { // LED Sequence 
   digitalWrite(ledPinA, HIGH);
   delay(ledDelayTime);
   digitalWrite(ledPinB, HIGH);
@@ -115,8 +115,8 @@ void ledSequence() {
 }
 
 void Start() {
-  startTime = millis();
-  allLedsLow();
+  startTime = millis(); // Sets the start time using the millis() function.
+  allLedsLow(); // Turns all LEDs off
 }
 
 void allLedsLow() {
@@ -128,12 +128,13 @@ void allLedsLow() {
 }
 
 void Stop() {
-  endTime = millis();
-  elapsedTime = (endTime - startTime)+5;
-  elapsedTime = elapsedTime/1000;
-  Serial.print("Reaction Timer: ");
+  endTime = millis(); // Sets the end time
+  elapsedTime = (endTime - startTime)+5; // Sets the elasped time to start-end
+  elapsedTime = elapsedTime/1000; // Changed it from ms to s
+  Serial.print("Reaction Timer: "); 
   Serial.println(elapsedTime);
   lcd.clear();
+  
   lcd.print("Time: ");
   lcd.print(elapsedTime);
   lcd.print("s");
