@@ -54,8 +54,7 @@ void pinModes() {
 
 boolean debounce(boolean last) { // To see if the button has been pressed
   boolean current = digitalRead(switchPin); // Sets the boolean to the current state of the button
-  if(last != current) // If the last state does NOT equal current
-  {
+  if(last != current) { // If the last state does NOT equal current
     delay(5); // Use for stability
     current = digitalRead(switchPin); // Reads the state again, see if it has changed
   }
