@@ -130,7 +130,7 @@ void Stop() {
   endTime = millis(); // Sets the end time
   elapsedTime = (endTime - startTime)+5; // Sets the elasped time to start-end
   elapsedTime = elapsedTime/1000; // Changed it from ms to s
-  Serial.print("Reaction Timer: "); // Prints to the operator the reaction time
+  Serial.print("Reaction Time: "); // Prints to the operator the reaction time
   Serial.println(elapsedTime);
   lcd.clear(); // Clears the LCD
   
