@@ -37,7 +37,7 @@ void setup() {
   
   lcd.begin(); // Begins the LCD
   lcd.backlight(); // Turns on the backlight
-  lcd.print(" Reaction Timer "); // Prints Reaction Timer, useful in a hard restart
+  lcd.print("Reaction Timer"); // Prints Reaction Timer, useful in a hard restart
    
   digitalWrite(switchPin, HIGH); // Writes the switch HIGH, because we use a two prong switch, instead of a push button
 }
