@@ -154,4 +154,5 @@ void Stop() {
   }
   
   allLedsLow(); // Turns all LEDs off
+  Serial.println("New User"); // Prints to the operator that there is a new user
 }
