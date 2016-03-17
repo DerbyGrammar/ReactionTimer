@@ -31,7 +31,7 @@ float elapsedTime; // startTime - endTime
 void setup() {
   pinModes(); // Uses a subroutine to set all of the inputs/outputs
   
-  Serial.begin(9600); // Begins the Serial port for printing with the operatio
+  Serial.begin(9600); // Begins the Serial port for printing with the operator
   
   randomSeed(analogRead(-1)); // You will need this to generate proper 'random' numbers
   
