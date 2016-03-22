@@ -114,6 +114,10 @@ void ledSequence() { // LED Sequence
 }
 
 void Start() {
+  lcd.clear();
+  lcd.print("Reaction Timer");
+  lcd.setCursor(0,1);
+  lcd.print("Go!");
   startTime = millis(); // Sets the start time using the millis() function.
   allLedsLow(); // Turns all LEDs off
 }
