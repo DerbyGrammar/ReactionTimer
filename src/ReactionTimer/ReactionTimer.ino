@@ -43,8 +43,8 @@ void setup() {
 }
 
 void lcdClear() {
-  lcd.clear();
-  lcd.print("Reaction Timer");
+  lcd.clear(); // Clears the LCD
+  lcd.print("Reaction Timer"); // Prints Reaction Timer
 }
 
 void pinModes() {
