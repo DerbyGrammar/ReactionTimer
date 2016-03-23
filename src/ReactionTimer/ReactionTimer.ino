@@ -42,6 +42,11 @@ void setup() {
   digitalWrite(switchPin, HIGH); // Writes the switch HIGH, because we use a two prong switch, instead of a push button
 }
 
+void lcdClear() {
+  lcd.clear();
+  lcd.print("Reaction Timer");
+}
+
 void pinModes() {
   pinMode(switchPin, INPUT); // Sets switch as an input
   pinMode(ledPinA, OUTPUT); // Sets the LEDs as an output
