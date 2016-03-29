@@ -37,9 +37,14 @@ void setup() {
   
   lcd.begin(); // Begins the LCD
   lcd.backlight(); // Turns on the backlight
-  lcd.print("Reaction Timer"); // Prints Reaction Timer, useful in a hard restart
+  lcdClear();
    
   digitalWrite(switchPin, HIGH); // Writes the switch HIGH, because we use a two prong switch, instead of a push button
+}
+
+void lcdClear() {
+  lcd.clear(); // Clears the LCD
+  lcd.print("Reaction Timer"); // Prints Reaction Timer
 }
 
 void pinModes() {
@@ -85,8 +90,7 @@ void Random() {
   randomTime = random(randomTimeMin,randomTimeMax); // Generates the random number
   randomTime = randomTime*1000; // Converts the number from ms to s
 
-  lcd.clear(); // Clears all data off the led!
-  lcd.print("Reaction Timer");
+  lcdClear();
   digitalWrite(ledPinF, HIGH); // Tells the user that it is ready
   delay(100); // With a small LED blink
   digitalWrite(ledPinF, LOW); // That Turns off
@@ -114,8 +118,7 @@ void ledSequence() { // LED Sequence
 }
 
 void Start() {
-  lcd.clear(); // Clears the LCD
-  lcd.print("Reaction Timer"); // Reprints Reaction Timer
+  lcdClear();
   lcd.setCursor(0,1); // Sets the cursor to the second line
   lcd.print("Go!"); // Prints Go!
   startTime = millis(); // Sets the start time using the millis() function.
