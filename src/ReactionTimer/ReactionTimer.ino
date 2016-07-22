@@ -83,9 +83,9 @@ void Random() {
   randomTime = randomTime*1000; // Converts the number from ms to s
 
   lcdClear();
-  digitalWrite(ledPinF, HIGH); // Tells the user that it is ready
+  digitalWrite(ledArray[6], HIGH); // Tells the user that it is ready
   delay(100); // With a small LED blink
-  digitalWrite(ledPinF, LOW); // That Turns off
+  digitalWrite(ledArray[6], LOW); // That Turns off
   delay(1000); // Waits a second
   lcd.setCursor(0,1); // Sets the LCD cursor to bottom left
   lcd.print("Get Ready!");
