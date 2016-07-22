@@ -97,16 +97,10 @@ void Random() {
 }
 
 void ledSequence() { // LED Sequence 
-  digitalWrite(ledPinA, HIGH);
-  delay(ledDelayTime);
-  digitalWrite(ledPinB, HIGH);
-  delay(ledDelayTime);
-  digitalWrite(ledPinC, HIGH);
-  delay(ledDelayTime);
-  digitalWrite(ledPinD, HIGH);
-  delay(ledDelayTime);
-  digitalWrite(ledPinE, HIGH);
-  delay(ledDelayTime);
+  for(int i = 0; i < sizeof(ledArray); i++) {
+    digitalWrite(ledArray[i], HIGH);
+    delay(ledDelayTime);
+  }
 }
 
 void Start() {
