@@ -118,11 +118,9 @@ void Start() {
 }
 
 void allLedsLow() {
-  digitalWrite(ledPinA, LOW);
-  digitalWrite(ledPinB, LOW);
-  digitalWrite(ledPinC, LOW);
-  digitalWrite(ledPinD, LOW);
-  digitalWrite(ledPinE, LOW);
+  for(int i = 0; i < sizeof(ledArray); i++) {
+    digitalWrite(ledArray[i], LOW);
+  }
 }
 
 void Stop() {
