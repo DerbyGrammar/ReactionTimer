@@ -7,14 +7,7 @@
 #include <LiquidCrystal_I2C.h>  // LCD library for outputing text to the I2C LCD
 LiquidCrystal_I2C lcd(0x27, 16, 2); // Sets the address for the LCD I2C
 
-const int ledPinA = 2; // Red LED - Red LEDs are used for the sequence
-const int ledPinB = 3; // Red LED
-const int ledPinC = 4; // Red LED
-const int ledPinD = 5; // Red LED
-const int ledPinE = 6; // Red LED
-const int ledPinF = 7; // Green - For troubleshooting/activating the sequence
 const int switchPin = 8; // Switch
-
 const int ledArray[6] = {2,3,4,5,6,7};
 
 int randomTimeMin = 3; // Mininium Time (s)
