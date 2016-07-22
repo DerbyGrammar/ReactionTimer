@@ -15,6 +15,8 @@ const int ledPinE = 6; // Red LED
 const int ledPinF = 7; // Green - For troubleshooting/activating the sequence
 const int switchPin = 8; // Switch
 
+const int ledArray[6] = {2,3,4,5,6,7};
+
 int randomTimeMin = 3; // Mininium Time (s)
 int randomTimeMax = 8; // Maximium Time (s)
 int ledDelayTime = 1000; // Amount of time between the leds coming on
