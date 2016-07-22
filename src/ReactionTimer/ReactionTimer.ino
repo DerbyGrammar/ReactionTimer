@@ -7,8 +7,8 @@
 #include <LiquidCrystal_I2C.h>  // LCD library for outputing text to the I2C LCD
 LiquidCrystal_I2C lcd(0x27, 16, 2); // Sets the address for the LCD I2C
 
-const int switchPin = 8; // Switch
-const int ledArray[6] = {2,3,4,5,6,7};
+const int switchPin = 8; // Switch Pin
+const int ledArray[6] = {2,3,4,5,6,7}; // Array for the Led Pins
 
 int randomTimeMin = 3; // Mininium Time (s)
 int randomTimeMax = 8; // Maximium Time (s)
