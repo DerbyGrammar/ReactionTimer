@@ -51,12 +51,9 @@ void lcdClear() {
 
 void pinModes() {
   pinMode(switchPin, INPUT); // Sets switch as an input
-  pinMode(ledPinA, OUTPUT); // Sets the LEDs as an output
-  pinMode(ledPinB, OUTPUT);
-  pinMode(ledPinC, OUTPUT);
-  pinMode(ledPinD, OUTPUT);
-  pinMode(ledPinE, OUTPUT);
-  pinMode(ledPinF, OUTPUT);
+  for(int i = 0; i < sizeof(ledArray); i++) {
+    pinMode(ledArray[i], OUTPUT);
+  }
 }
 
 boolean debounce(boolean last) { // To see if the button has been pressed
