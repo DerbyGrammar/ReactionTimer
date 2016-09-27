@@ -22,6 +22,7 @@ long startTime; // startTime for measuring the reaction time
 long endTime; // endTime for measuring the reaction time
 long randomTime; // randomTime delay from all LEDs on to them all off
 float elapsedTime; // startTime - endTime
+String firstLine = "Reaction Timer"; // first line of the LCD, must be below 16 char
 
 void setup() {
   pinModes(); // Uses a subroutine to set all of the inputs/outputs
