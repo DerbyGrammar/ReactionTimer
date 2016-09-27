@@ -8,7 +8,7 @@
 LiquidCrystal_I2C lcd(0x27, 16, 2); // Sets the address for the LCD I2C
 
 const int switchPin = 8; // Switch Pin
-const int ledArray[] = {2,3,4,5,6,7}; // Array for the LED Pins
+const int ledArray[] = {2,3,4,5,6}; // Array for the LED Pins
 
 int randomTimeMin = 3; // Mininium Time (s)
 int randomTimeMax = 8; // Maximium Time (s)
@@ -83,10 +83,6 @@ void Random() {
   randomTime = randomTime*1000; // Converts the number from ms to s
 
   lcdClear();
-  digitalWrite(ledArray[6], HIGH); // Tells the user that it is ready
-  delay(100); // With a small LED blink
-  digitalWrite(ledArray[6], LOW); // That Turns off
-  delay(1000); // Waits a second
   lcd.setCursor(0,1); // Sets the LCD cursor to bottom left
   lcd.print("Get Ready!");
   Serial.print("Random Time: "); // Prints to the operator the randomTime
